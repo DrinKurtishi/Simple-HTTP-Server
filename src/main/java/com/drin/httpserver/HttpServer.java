@@ -1,15 +1,18 @@
 package com.drin.httpserver;
 
+import com.drin.httpserver.config.Configuration;
+
+import com.drin.httpserver.config.ConfigurationManager;
+
 public class HttpServer {
 
     public static void main(String[] args) {
-        System.out.println("Server Starting");
-        //Steps:
-        //Read Configuration Files
-        //Open a socket to listen to a Port
-        //Read request messages
-        //Open and read files from the FileSystem
-        //Write Response Messages
+        System.out.println("Server Starting...");
+        
+        ConfigurationManager.getInstance().loadConfigurationFile("src/main/resources/http.json");
+        Configuration conf = ConfigurationManager.getInstance().getCurrentConfiguration();
+        System.out.println("Using port: " + conf.getPort());
+        System.out.println("Using webroot: " + conf.getWebroot());
     }
 
 }
